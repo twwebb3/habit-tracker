@@ -12,6 +12,7 @@ class HabitTracker(QMainWindow):
         # Setup UI elements
         self.setupUI()
 
+
     def setupUI(self):
         # Create a menu bar
         self.menuBar = self.menuBar()
@@ -43,6 +44,7 @@ class HabitTracker(QMainWindow):
         # Add items to the checklist
         self.addChecklistItems(["Habit 1", "Habit 2", "Habit 3"])
 
+
     def addChecklistItems(self, items):
         for item_text in items:
             # Create a QListWidgetItem
@@ -53,3 +55,14 @@ class HabitTracker(QMainWindow):
 
             # Add the QCheckBox to the list
             self.checklist.setItemWidget(item, chkBox)
+
+
+    def onCheckBoxStateChanged(self, state):
+        # This method is called when a checkbox is checked or unchecked
+        sender = self.sender()
+        if state == 2:  # Checked
+            print(f"{sender.text()} checked")
+            # Implement your logic for a checked habit here
+        else:  # Unchecked
+            print(f"{sender.text()} unchecked")
+            # Implement your logic for an unchecked habit here
