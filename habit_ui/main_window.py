@@ -29,14 +29,29 @@ class HabitTracker(QMainWindow):
     def create_dropdown_menu(self):
         # Dropdown menu for habit frequency selection
         self.menu_dropdown = QComboBox(self)
-        self.menu_dropdown.addItems(["All Habits", "Daily Habits", "Weekly Habits", "Monthly Habits", "Quarterly Habits"])
+        self.menu_dropdown.addItems(["Home", "Add Habit", "Analytics"])
         self.main_layout.addWidget(self.menu_dropdown)
 
         # Connect dropdown selection change to a function
         self.menu_dropdown.currentIndexChanged.connect(self.filter_habits)
 
     def filter_habits(self, index):
-        # Logic to filter and display habits based on the selected frequency
-        frequency = self.menu_dropdown.currentText()
-        print("Selected frequency:", frequency)
-        # Implement the filtering logic here
+        selected_option = self.menu_dropdown.currentText()
+        if selected_option == "Home":
+            self.show_home()
+        elif selected_option == "Add Habit":
+            self.show_add_habit_form()
+        elif selected_option == "Analytics":
+            self.show_analytics()
+
+    def show_home(self):
+        self.habit_list.show()
+        self.habit_form.hide()
+
+    def show_add_habit_form(self):
+        self.habit_list.hide()
+        self.habit_form.show()
+
+    def show_analytics(self):
+        self.habit_list.hide()
+        self.habit_form.hide()
