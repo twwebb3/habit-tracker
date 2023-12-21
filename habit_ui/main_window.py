@@ -26,6 +26,8 @@ class HabitTracker(QMainWindow):
         self.main_layout.addWidget(self.habit_list)
         self.main_layout.addWidget(self.habit_form)
 
+        self.show_home()
+
     def create_dropdown_menu(self):
         # Dropdown menu for habit frequency selection
         self.menu_dropdown = QComboBox(self)
