@@ -2,8 +2,9 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QComboBox
 
 class HabitForm(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, database=None, parent=None):
         super().__init__(parent)
+        self.database = database
         self.layout = QVBoxLayout(self)
 
         # Add form elements
@@ -25,6 +26,7 @@ class HabitForm(QWidget):
         habit_name = self.habit_input.text()
         habit_frequency = self.frequency_combo.currentText()
         # Logic to add the habit to the list and storage
+        self.database.add_habit(habit_name, habit_frequency)
         print("Habit to add:", habit_name, "Frequency:", habit_frequency)
         # Clear the input field
         self.habit_input.clear()
