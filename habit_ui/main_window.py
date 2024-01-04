@@ -5,8 +5,9 @@ from .habit_form import HabitForm
 from .habit_list import HabitList
 
 class HabitTracker(QMainWindow):
-    def __init__(self):
+    def __init__(self, database=None):
         super().__init__()
+        self.database = database
 
         # Set the title and size of the window
         self.setWindowTitle("Habit Tracker")
@@ -21,8 +22,8 @@ class HabitTracker(QMainWindow):
         self.create_dropdown_menu()
 
         # Add habit form and list to the layout
-        self.habit_list = HabitList(self)
-        self.habit_form = HabitForm(self)
+        self.habit_list = HabitList(database=self.database)
+        self.habit_form = HabitForm(database=self.database)
         self.main_layout.addWidget(self.habit_list)
         self.main_layout.addWidget(self.habit_form)
 
